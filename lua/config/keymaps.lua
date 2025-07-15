@@ -7,11 +7,9 @@
 require("config.pythoncp")
 
 vim.keymap.set("x", "<leader>p", [["_dP]])
-vim.keymap.set("v", "<leader>cp", ":lua ExecutePython()<CR>", { noremap = true, silent = true })
 
 -- Flutter keymaps
 vim.keymap.set("n", "<leader>pp", ":FlutterRestart<CR>", { noremap = true, silent = true })
 vim.keymap.set("n", "<leader>pr", ":FlutterRun<CR>", { noremap = true, silent = true })
 vim.keymap.set("n", "<leader>pq", ":FlutterQuit<CR>", { noremap = true, silent = true })
-
-vim.keymap.set("n", "<leader>cc", ":CopilotChatToggle<CR>", { noremap = true, silent = true })
+vim.keymap.set("n", "<leader>cp", ":CopilotChatToggle<CR>", { noremap = true, silent = true })
