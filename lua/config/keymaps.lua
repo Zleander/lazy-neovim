@@ -3,13 +3,9 @@
 -- Add any additional keymaps here
 -- Function to execute Python code
 
--- Load the ExecutePython function
-require("config.pythoncp")
-
 vim.keymap.set("x", "<leader>p", [["_dP]])
 
 -- Flutter keymaps
 vim.keymap.set("n", "<leader>pp", ":FlutterRestart<CR>", { noremap = true, silent = true })
 vim.keymap.set("n", "<leader>pr", ":FlutterRun<CR>", { noremap = true, silent = true })
 vim.keymap.set("n", "<leader>pq", ":FlutterQuit<CR>", { noremap = true, silent = true })
-vim.keymap.set("n", "<leader>cp", ":CopilotChatToggle<CR>", { noremap = true, silent = true })
