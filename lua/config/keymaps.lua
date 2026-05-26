@@ -5,6 +5,8 @@
 
 vim.keymap.set("x", "<leader>p", [["_dP]])
 
+vim.keymap.set({ "n", "i", "v", "s" }, "<D-s>", "<cmd>w<cr><esc>", { desc = "Save File" })
+
 -- Flutter keymaps
 vim.keymap.set("n", "<leader>pp", ":FlutterRestart<CR>", { noremap = true, silent = true })
 vim.keymap.set("n", "<leader>pr", ":FlutterRun<CR>", { noremap = true, silent = true })
