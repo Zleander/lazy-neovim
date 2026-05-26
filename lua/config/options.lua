@@ -4,3 +4,5 @@
 
 -- Disable root switching based on what nvim thinks
 vim.g.root_spec = { "cwd" }
+
+vim.opt.signcolumn = "yes:2"
