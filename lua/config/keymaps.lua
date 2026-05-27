@@ -12,17 +12,29 @@ vim.keymap.set("n", "<leader>pp", ":FlutterRestart<CR>", { noremap = true, silen
 vim.keymap.set("n", "<leader>pr", ":FlutterRun<CR>", { noremap = true, silent = true })
 vim.keymap.set("n", "<leader>pq", ":FlutterQuit<CR>", { noremap = true, silent = true })
 
+local function repo_relative_path()
+  local abs = vim.fn.expand("%:p")
+  if abs == "" then
+    return vim.fn.expand("%")
+  end
+  local root = vim.fn.systemlist({ "git", "-C", vim.fn.expand("%:p:h"), "rev-parse", "--show-toplevel" })[1]
+  if vim.v.shell_error == 0 and root and root ~= "" and abs:sub(1, #root) == root then
+    return abs:sub(#root + 2)
+  end
+  return vim.fn.expand("%")
+end
+
 vim.keymap.set("n", "<leader>yl", function()
-  local ref = vim.fn.expand("%") .. ":" .. vim.fn.line(".")
+  local ref = repo_relative_path() .. ":" .. vim.fn.line(".")
   vim.fn.setreg("+", ref)
   vim.notify(ref, vim.log.levels.INFO)
-end, { desc = "Yank file:line" })
+end, { desc = "Yank repo-relative file:line" })
 
 vim.keymap.set("n", "<leader>yf", function()
-  local path = vim.fn.expand("%")
+  local path = repo_relative_path()
   vim.fn.setreg("+", path)
   vim.notify(path, vim.log.levels.INFO)
-end, { desc = "Yank file path" })
+end, { desc = "Yank repo-relative file path" })
 
 local function codediff_default_branch()
   for _, candidate in ipairs({ "dev", "main", "master" }) do
